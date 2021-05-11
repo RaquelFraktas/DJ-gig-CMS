@@ -3,12 +3,8 @@
 /.config
 /coverage/
 /InstalledFiles
-/pkg/
-/spec/reports/
-/spec/examples.txt
-/test/tmp/
-/test/version_tmp/
-/tmp/
+notes.md
+
 
 # Used by dotenv library to load environment variables.
 # .env
