@@ -1,3 +1,3 @@
 class Genre < ActiveRecord::Base
-    belongs_to :Dj
+    belongs_to :dj
 end
