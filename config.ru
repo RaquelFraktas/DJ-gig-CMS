@@ -7,3 +7,4 @@ end
 run ApplicationController
 use BookingAgentsController
 use GigsController
+use DjsController
