@@ -1,4 +1,4 @@
-class CreateBookingAgents < ActiveRecord::Migration
+class CreateBookingAgents < ActiveRecord::Migration[5.2]
   def change
     create_table :booking_agents do |t|
       t.string :name
