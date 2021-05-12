@@ -1,4 +1,4 @@
-class BookingAgent < ActiveRecord::Base
+class Promoter < ActiveRecord::Base
     has_many :gigs
     has_many :djs, through: :gigs
 

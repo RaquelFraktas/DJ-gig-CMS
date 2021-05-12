@@ -10,20 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_181150) do
+ActiveRecord::Schema.define(version: 2021_05_12_000051) do
 
-  create_table "booking_agents", force: :cascade do |t|
-    t.string "name"
-    t.string "based_in"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "username"
-    t.string "password_digest"
-  end
-
-  create_table "dj_booking_agents", force: :cascade do |t|
+  create_table "dj_promoters", force: :cascade do |t|
     t.integer "dj_id"
-    t.integer "booking_agent_id"
+    t.integer "promoter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +39,15 @@ ActiveRecord::Schema.define(version: 2021_05_11_181150) do
     t.string "name"
     t.string "venue"
     t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "promoters", force: :cascade do |t|
+    t.string "name"
+    t.string "based_in"
+    t.string "username"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
