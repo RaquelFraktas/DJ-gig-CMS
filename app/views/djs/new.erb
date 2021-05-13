@@ -1,0 +1,33 @@
+<h2>Create an account with us</h2>
+
+<div class="content">
+
+  <div class="form">
+    <form action="/djs" method="POST">
+      <label for="username"> Username:</label>
+        <input type="text" id="dj_username" name="dj[username]"><br><br>
+      <label for="email"> Email:</label>
+        <input type="text" id="dj_email" name="dj[email]"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="dj_password" name="dj[password]"><br><br>
+      
+        <div class="genre_form">
+          <label for="genres"> The genres you play:</label>
+          <% Genre.all.each do |genre| %>
+           <ul> <input id="<%= genre.name %>" type="checkbox" name="dj[genres]" value="<%= genre.id %>"><li><%= genre.name %></li>
+          </ul><% end %>
+          <br> <label for="create_new_genre"> Create a new genre:</label>
+          <input type="text" id="new_genre" name="genre[name]"><br><br>
+
+        </div>
+      <br><br>
+
+
+      <input type="submit" value="Create Account">
+    </form> <br>
+
+   </div>
+
+  <p>New to this site? <a href ="/djs/new">Click here</a> to create an account.</p>
+</div>
+

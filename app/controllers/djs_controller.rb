@@ -1,38 +1,43 @@
 class DjsController < ApplicationController
 
-    # GET: /gigs
+
     get "/djs" do
       erb :"/djs/index"
     end
   
-    # GET: /gigs/new
     get "/djs/new" do
       erb :"/djs/new"
     end
   
-    # POST: /gigs
     post "/djs" do
-      redirect "/djs"
+      @user = Dj.find_or_create_by(params)
+      if @user
+        session[:user_id] = @user.id
+        redirect '/djs/:id'
+      end
+      #put an error message if login unsuccessful
+      redirect "/error"
     end
   
-    # GET: /gigs/5
     get "/djs/:id" do
+      @user = Dj.find_by(params[:id])
+      
       erb :"/djs/show"
     end
   
-    # GET: /gigs/5/edit
+    # GET: /djs/5/edit
     get "/djs/:id/edit" do
       erb :"/djs/edit"
     end
   
-    # PATCH: /gigs/5
-    patch "/gigs/:id" do
-      redirect "/gigs/:id"
+    # PATCH: /djs/5
+    patch "/djs/:id" do
+      redirect "/djs/:id"
     end
   
-    # DELETE: /gigs/5/delete
-    delete "/gigs/:id/delete" do
-      redirect "/gigs"
+    # DELETE: /djs/5/delete
+    delete "/djs/:id/delete" do
+      redirect "/djs"
     end
   end
   

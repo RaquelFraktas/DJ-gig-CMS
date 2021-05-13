@@ -2,7 +2,7 @@ class PromotersController < ApplicationController
 
   # GET: /booking_agents
   get "/promoters" do
-    erb :"/booking_agents/index"
+    erb :"/promoters/index"
   end
 
   # GET: /booking_agents/new
@@ -31,7 +31,7 @@ class PromotersController < ApplicationController
   end
 
   # DELETE: /booking_agents/5/delete
-  delete "/booking_agents/:id/delete" do
-    redirect "/booking_agents"
+  delete "/promoters/:id/delete" do
+    redirect "/promoters"
   end
 end
