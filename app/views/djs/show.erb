@@ -1,7 +1,9 @@
 <body>
-    <% if @user.is_logged_in?(session) %>
-      <h1>Welcome <%= @user.current_user(session).name %></h1>
-    
-      <h4><a href="/logout">Log Out</a></h4>
-    <% end %>
+<% if @dj == current_user(session) %>
+<h1>Welcome <%= @dj.name %></h1>
+
+<h4><a href="/logout">Log Out</a></h4>
+<% end %>
 </body>
+
+<a href="/logout">Log Out</a>

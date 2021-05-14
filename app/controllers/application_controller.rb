@@ -21,6 +21,11 @@ class ApplicationController < Sinatra::Base
     erb :error
   end
 
+  get "/logout" do
+    session.clear
+    redirect "/"
+  end
+
 
   helpers do
 
@@ -28,8 +33,8 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
-    def current_user
-      logged_in? && User.find(session[:user_id])
+    def current_user(session)
+      logged_in? && Dj.find(session[:user_id])
     end
   end
 

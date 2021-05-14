@@ -5,13 +5,13 @@ class DjsController < ApplicationController
       erb :"/djs/index"
     end
   
-    get "/djs/new" do
+    get "/djs/signup" do
       erb :"/djs/new"
     end
   
     post "/djs" do
       @session = session
-      @dj = Dj.find_by(username: params[:username], password_digest: params[:password])
+      @dj = Dj.find_by(username: params[:username], password: params[:password])
       if @user
         @session[:user_id] = @dj.id
         redirect '/djs/:id'
@@ -19,19 +19,37 @@ class DjsController < ApplicationController
       redirect "/error"
     end
 
-    post "/djs/new" do
-      @new_dj = DJ.create(params)
-      if @new_dj
-        session[:user_id] = @new_dj.id
-        redirect '/djs/:id'
-      end
-    end
-  
+
     get "/djs/:id" do
-      @user = Dj.find_by(params[:id])
+      @dj = Dj.find_by(session[:user_id])
       
       erb :"/djs/show"
     end
+
+
+    post "/djs/signup" do
+      # puts params[:dj][:name]
+  
+      @new_dj = Dj.new(params[:dj])
+      @new_dj.save
+
+      if @new_dj
+        session[:user_id] = @new_dj.id
+       
+        if !params[:genre][:name].empty? && params[:genre][:name]!= Genre.find_by(name: params[:genre][:name])
+          @new_genre = Genre.create(params[:genre])
+          @new_dj.genres << @new_genre
+        elsif !params[:genre][:name].empty?
+          genres = params[:genre]
+          @new_dj.genres << genres
+        end
+        
+        redirect "/djs/#{@new_dj.id}"
+      end
+      redirect "/error"
+    end
+  
+ 
   
     get "/djs/:id/edit" do
       erb :"/djs/edit"
@@ -42,14 +60,13 @@ class DjsController < ApplicationController
       redirect "/djs/:id"
     end
   
-    # DELETE: /djs/5/delete
     delete "/djs/:id/delete" do
       redirect "/djs"
     end
 
     post "/djs/logout" do
       flash[:message] = "Successfully logged out."
-      redirect to "/"
+      redirect to "/logout"
     end
 
   end
