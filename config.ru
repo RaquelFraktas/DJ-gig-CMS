@@ -5,6 +5,9 @@ require './config/environment'
 # end
 
 
+use Rack::Session::Pool, :expire_after => 2592000
+use Rack::Protection::RemoteToken
+use Rack::Protection::SessionHijacking
 
 use PromotersController
 use GigsController

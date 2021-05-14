@@ -10,9 +10,10 @@ class DjsController < ApplicationController
     end
   
     post "/djs" do
-      @user = Dj.find_or_create_by(params)
+      @session = session
+      @dj = Dj.find_by(username: params[:username], password_digest: params[:password])
       if @user
-        session[:user_id] = @user.id
+        @session[:user_id] = @dj.id
         redirect '/djs/:id'
       end
       #put an error message if login unsuccessful
@@ -25,7 +26,6 @@ class DjsController < ApplicationController
       erb :"/djs/show"
     end
   
-    # GET: /djs/5/edit
     get "/djs/:id/edit" do
       erb :"/djs/edit"
     end
@@ -38,6 +38,11 @@ class DjsController < ApplicationController
     # DELETE: /djs/5/delete
     delete "/djs/:id/delete" do
       redirect "/djs"
+    end
+
+    post "/djs/logout"
+      flash[:message] = "Successfully logged out."
+      redirect to "/"
     end
   end
   

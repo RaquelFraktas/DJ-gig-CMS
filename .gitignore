@@ -4,6 +4,7 @@
 /coverage/
 /InstalledFiles
 notes.md
+.env
 
 
 # Used by dotenv library to load environment variables.
