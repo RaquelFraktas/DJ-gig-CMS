@@ -1,15 +1,17 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+  
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    use Rack::Flash
     set :session_store, Rack::Session::Pool
   end
 
-  use Rack::Flash
+  
 
   get "/" do
     erb :welcome

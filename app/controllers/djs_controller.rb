@@ -1,5 +1,5 @@
 class DjsController < ApplicationController
-
+  
 
     get "/djs" do
       erb :"/djs/index"
@@ -16,8 +16,15 @@ class DjsController < ApplicationController
         @session[:user_id] = @dj.id
         redirect '/djs/:id'
       end
-      #put an error message if login unsuccessful
       redirect "/error"
+    end
+
+    post "/djs/new" do
+      @new_dj = DJ.create(params)
+      if @new_dj
+        session[:user_id] = @new_dj.id
+        redirect '/djs/:id'
+      end
     end
   
     get "/djs/:id" do
@@ -40,9 +47,10 @@ class DjsController < ApplicationController
       redirect "/djs"
     end
 
-    post "/djs/logout"
+    post "/djs/logout" do
       flash[:message] = "Successfully logged out."
       redirect to "/"
     end
+
   end
   

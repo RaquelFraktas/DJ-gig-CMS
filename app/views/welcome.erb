@@ -3,6 +3,10 @@
   <div class="col-md-8 col-md-offset-2">
     <h2>Welcome to the site!!! </h2>
 
+    <% if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <% end %> 
+
     <div class="content">
     <p> 
     This is the place where you, as either an electronic DJ, or a promoter come to book gigs/ check in on already booked gigs! 

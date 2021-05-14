@@ -3,15 +3,18 @@
 <div class="content">
 
   <div class="form">
-    <form action="/djs" method="POST">
-      <label for="username"> Username:</label>
-        <input type="text" id="dj_username" name="dj[username]"><br><br>
-      <label for="email"> Email:</label>
-        <input type="text" id="dj_email" name="dj[email]"><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="dj_password" name="dj[password]"><br><br>
+    <form action="/djs/new" method="POST">
+    <label for="name"> Name:</label>
+      <input type="text" id="dj_name" name="dj[name]"><br><br>
+    <label for="username"> Username:</label>
+      <input type="text" id="dj_username" name="dj[username]"><br><br>
+    <label for="password">Password:</label>
+      <input type="password" id="dj_password" name="dj[password]"><br><br>
       
-        <div class="genre_form">
+    <label for="based_in"> Where are you based in?</label>
+      <input type="text" id="dj__based_in" name="dj[based_in]"><br><br>
+        
+      <div class="genre_form">
           <label for="genres"> The genres you play:</label>
           <% Genre.all.each do |genre| %>
            <ul> <input id="<%= genre.name %>" type="checkbox" name="dj[genres]" value="<%= genre.id %>"><li><%= genre.name %></li>
@@ -28,6 +31,6 @@
 
    </div>
 
-  <p>New to this site? <a href ="/djs/new">Click here</a> to create an account.</p>
+  
 </div>
 
