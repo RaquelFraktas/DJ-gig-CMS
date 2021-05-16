@@ -7,11 +7,9 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    use Rack::Flash
-    set :session_store, Rack::Session::Pool
+    set :session_secret, ENV["SESSION_SECRET"]
+    register Sinatra::Flash
   end
-
-  
 
   get "/" do
     erb :welcome
@@ -33,8 +31,14 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
-    def current_user(session)
+    def current_user
       logged_in? && Dj.find(session[:user_id])
+    end
+  end
+
+  def redirect_if_not_logged_in
+    if !logged_in?
+        redirect '/error'
     end
   end
 

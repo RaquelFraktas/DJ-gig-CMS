@@ -1,8 +1,9 @@
 <body>
-<% if @dj == current_user(session) %>
+<%= session[:message]%>
+<% if @dj == current_user %>
 <h1>Welcome <%= @dj.name %></h1>
+test data
 
-<h4><a href="/logout">Log Out</a></h4>
 <% end %>
 </body>
 

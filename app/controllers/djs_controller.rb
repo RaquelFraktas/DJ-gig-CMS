@@ -10,29 +10,33 @@ class DjsController < ApplicationController
     end
   
     post "/djs" do
-      @session = session
-      @dj = Dj.find_by(username: params[:username], password: params[:password])
-      if @user
-        @session[:user_id] = @dj.id
-        redirect '/djs/:id'
+      dj = Dj.find_by(username: params[:dj][:username])
+      if dj && dj.authenticate(params[:dj][:password])
+        
+        session[:user_id] = dj.id
+        puts "id info"
+        puts session[:user_id]
+        session[:message] = "Successfully logged in."
+        puts session[:message]
+
+        
+        redirect "/djs/#{dj.id}"
       end
       redirect "/error"
     end
 
 
     get "/djs/:id" do
-      @dj = Dj.find_by(session[:user_id])
+      redirect_if_not_logged_in
+      @dj = Dj.find(session[:user_id])
       
       erb :"/djs/show"
     end
 
 
     post "/djs/signup" do
-      # puts params[:dj][:name]
-  
       @new_dj = Dj.new(params[:dj])
       @new_dj.save
-
       if @new_dj
         session[:user_id] = @new_dj.id
        
@@ -52,15 +56,31 @@ class DjsController < ApplicationController
  
   
     get "/djs/:id/edit" do
+      #if you need to change your username, please contact support
+      #get password changes to match up
+      @dj = Dj.find(params[:id])
       erb :"/djs/edit"
     end
   
-    # PATCH: /djs/5
     patch "/djs/:id" do
+      @dj = Dj.find(params[:id])
+      @dj.name = params[:dj][:name]
+      @dj.based_in = params[:dj][:based_in]
+      @dj.bio = params [:dj][:bio]
+
+      if @dj.authenticate(params[:dj][:password])
+        if params[:dj][:new_password1] == params[:dj][:new_password2]
+        @dj.password = params[:dj][:new_password1]
+        end
+      end
+      @dj.save
       redirect "/djs/:id"
     end
   
     delete "/djs/:id/delete" do
+      @dj = Dj.find_by_id(params[:id])
+      @dj.delete
+      flash[:message] = "You have successfully deleted your account."
       redirect "/djs"
     end
 

@@ -1,7 +1,8 @@
 class Dj < ActiveRecord::Base
-    has_many :genres
+    has_secure_password
+    has_and_belongs_to_many :genres
     has_many :gigs
     has_many :promoters, through: :gigs
-    validates_presence_of :username
-    has_secure_password
+    validates :username, uniqueness: true
+    validates :password, length: { in: 6..60 }
 end
