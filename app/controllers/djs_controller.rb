@@ -12,14 +12,9 @@ class DjsController < ApplicationController
     post "/djs" do
       dj = Dj.find_by(username: params[:dj][:username])
       if dj && dj.authenticate(params[:dj][:password])
-        
         session[:user_id] = dj.id
-        puts "id info"
-        puts session[:user_id]
         session[:message] = "Successfully logged in."
-        puts session[:message]
-
-        
+        flash[:success] = session[:message] 
         redirect "/djs/#{dj.id}"
       end
       redirect "/error"
@@ -35,7 +30,7 @@ class DjsController < ApplicationController
 
 
     post "/djs/signup" do
-      @new_dj = Dj.new(params[:dj])
+      @new_dj = Dj.create(params[:dj])
       @new_dj.save
       if @new_dj
         session[:user_id] = @new_dj.id
@@ -58,23 +53,29 @@ class DjsController < ApplicationController
     get "/djs/:id/edit" do
       #if you need to change your username, please contact support
       #get password changes to match up
+      redirect_if_not_logged_in
       @dj = Dj.find(params[:id])
       erb :"/djs/edit"
     end
   
     patch "/djs/:id" do
+     
       @dj = Dj.find(params[:id])
       @dj.name = params[:dj][:name]
       @dj.based_in = params[:dj][:based_in]
-      @dj.bio = params [:dj][:bio]
-
-      if @dj.authenticate(params[:dj][:password])
-        if params[:dj][:new_password1] == params[:dj][:new_password2]
-        @dj.password = params[:dj][:new_password1]
-        end
-      end
+      @dj.bio = params[:dj][:bio]
+      @dj.genre_ids = params[:genres]
       @dj.save
-      redirect "/djs/:id"
+      binding.pry
+      # if @dj.authenticate(params[:dj][:password])
+    
+      #   if params[dj.new_password1] == params[dj.new_password2]
+      #   @dj.password = params[dj.new_password1]
+      #   binding.pry
+      #   end
+      # end
+      
+      redirect "/djs/#{@dj.id}"
     end
   
     delete "/djs/:id/delete" do

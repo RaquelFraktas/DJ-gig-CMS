@@ -3,35 +3,33 @@
 <div class="content">
 
   <div class="form">
-    <form action="/djs/:id" method="POST">
+    <form action="/djs/<%= @dj.id%>" method="POST">
     <input type="hidden" name="_method" value="PATCH">
 
     <label for="name"> Name:</label>
-      <input type="text" id="dj_name" name="dj[name]" value="<%= @dj.name %>><br><br>
+      <input type="text" id="dj_name" name="dj[name]" value="<%= @dj.name %>"><br><br>
 
     <label for="based_in"> Based in:</label>
-      <input type="text" id="dj_based_in" name="dj[based_in]" value="<%= @dj.based_in %>><br><br>
+      <input type="text" id="dj_based_in" name="dj[based_in]" value="<%= @dj.based_in%>"><br><br>
       
     <label for="bio"> Your bio:</label>
-      <input type="text" id="dj_bio" name="dj[bio]" value="<%= @dj.bio %>><br><br>
+      <input type="text" id="dj_bio" name="dj[bio]" value="<%= @dj.bio %>"><br><br>
         
     <div class="genre_form">
     <label for="genres"> The genres you play:</label>
       <% Genre.all.each do |genre| %>
-        <ul> <input id="<%= genre.name %>" type="checkbox" name="genre[name]" value="<%= genre.id %>"<%='checked' if @dj.genres.include?(genre) %>>
-          <li><%= genre.name %></li>
+        <ul> <input id="<%= genre.name %>" type="checkbox" name="genres[]" value="<%= genre.id %>"<%='checked' if @dj.genres.include?(genre) %>>
+          <li><%= genre.name %></li><br>
             </ul><% end %> <br> 
-        <label for="create_new_genre"> Create a new genre:</label>
-          <input type="text" id="new_genre" name="genre[name]"><br><br>
-
+  
        
       <br><br>
       
       <label for="password">Put in your current password to change your password:</label>
         <input type="password" id="dj_password" name="dj[password]"><br><br>
         <label for="password">New password:</label>
-        <input type="password" id="dj_password" name="dj[new_password1]"><br><br>
-        <input type="password" id="dj_password" name="dj[new_password2]"><br><br>
+        <input type="password" id="dj_password" name="dj.newpassword1"><br><br>
+        <input type="password" id="dj_password" name="dj.newpassword2"><br><br>
 
       <input type="submit" value="Save">
     </form> <br>
