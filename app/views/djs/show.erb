@@ -17,20 +17,23 @@
       </ol>
     <% end %>
     <% else %>
-    You have no shows booked. 
-    <%end%>
+    You currently have no shows booked. 
+  <%end%>
 
-    <h3>Your Info:</h3>
-    <%= @dj.based_in %><br>
-    <%= @dj.bio %><br>
+    <h3>Your Info</h3>
+    <h4> Based in: </h4><%= @dj.based_in %><br>
+    <h4> Bio: </h4><%= @dj.bio %><br>
+    <h4> The genres you play: </h4>
     <% @dj.genres.collect do |genre| %>
       <ul>
         <ol><%= genre.name %><ol>
       </ul>
-      <%end%>
+    <% end %>
+  
+<% end %>
       <br>
     <a href="/djs/<%=@dj.id%>/edit">Click here to edit your details</a>
-<% end %>
+
 </body>
 <br><br>
 <a href="/logout">Log Out</a>

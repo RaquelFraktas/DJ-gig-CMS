@@ -4,5 +4,5 @@ class Dj < ActiveRecord::Base
     has_many :gigs
     has_many :promoters, through: :gigs
     validates :username, uniqueness: true
-    validates :password, length: { in: 6..60 }
+    validates :password, length: { in: 6..60 }, if: -> { password.present? }
 end
