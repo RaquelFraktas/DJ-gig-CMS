@@ -31,14 +31,18 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
-    def current_user
+    def dj_current_user
       logged_in? && Dj.find(session[:user_id])
     end
-  end
+  
+    def promoter_current_user
+      logged_in? && Promoter.find(session[:user_id])
+    end
 
-  def redirect_if_not_logged_in
-    if !logged_in?
-        redirect '/error'
+    def redirect_if_not_logged_in
+      if !logged_in?
+          redirect '/error'
+      end
     end
   end
 

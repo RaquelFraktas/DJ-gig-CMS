@@ -1,6 +1,6 @@
 class PromotersController < ApplicationController
 
-  # GET: /booking_agents
+
   get "/promoters" do
     if logged_in?
       promoter = Promoter.find(session[:user_id])
@@ -9,7 +9,7 @@ class PromotersController < ApplicationController
     erb :"/promoters/index"
   end
 
-  # GET: /booking_agents/new
+
   get "/promoters/signup" do
     erb :"/promoters/new"
   end
@@ -54,16 +54,15 @@ class PromotersController < ApplicationController
   get "/promoters/:id/edit" do
     redirect_if_not_logged_in
       @promoter = Promoter.find(params[:id])
-      erb :"/djs/edit"
+      erb :"/promoters/edit"
   end
 
   # PATCH: /booking_agents/5
   patch "/promoters/:id" do
-    @promoter = Dj.find(params[:id])
-    @promoter.name = params[:dj][:name]
-    @promoter.based_in = params[:dj][:based_in]
-    @promoter.bio = params[:dj][:bio]
-    @promoter.genre_ids = params[:genres]
+    @promoter = Promoter.find(params[:id])
+    @promoter.name = params[:promoter][:name]
+    @promoter.based_in = params[:promoter][:based_in]
+    @promoter.gig_ids = params[:gigs]
     if !params[:gig][:name].empty? && !Gig.find_by(name: params[:gig][:name])
       @new_gig = Gig.create(name: params[:gig][:name])
       @promoter.gigs << @new_gig

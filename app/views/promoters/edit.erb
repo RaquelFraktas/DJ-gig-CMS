@@ -1,1 +1,47 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h2>Edit your profile</h2>
+
+<div class="content">
+
+  <div class="form">
+    <form action="/promoters/<%= @promoter.id%>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+
+    <label for="name"> Name:</label>
+      <input type="text" id="promoter_name" name="promoter[name]" value="<%= @promoter.name %>"><br><br>
+
+    <label for="based_in"> Based in:</label>
+      <input type="text" id="promoter_based_in" name="promoter[based_in]" value="<%= @promoter.based_in%>"><br><br>
+
+        
+    <div class="gig_form">
+    <label for="gigs"> Your upcoming gigs:</label>
+      <% Gig.all.each do |gig| %>
+        <ul> <input id="<%= gig.name %>" type="checkbox" name="gigs[]" value="<%= gig.id %>"<%='checked' if @promoter.gigs.include?(gig) %>>
+          <li><%= gig.name %></li><br>
+            </ul><% end %> <br> 
+  
+    <br> <label for="create_new_gig"> <h3>Create a new gig:</h3></label><br>
+    <label>Name:</label>
+    <input type="text" id="new_gig_name" name="gig[name]"><br>
+    <label>Venue:</label>
+    <input type="text" id="new_gig_venue" name="gig[venue]"><br>
+    <label>City:</label>
+    <input type="text" id="new_gig_city" name="gig[city]">
+       
+      <br><br>
+
+   
+      <input type="submit" value="Save">
+    </form> <br>
+
+
+    <form action="/promoters/<%= @promoter.id%>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Account">
+    </form>
+
+     </div>
+   </div>
+  
+</div>
+

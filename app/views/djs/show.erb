@@ -1,6 +1,6 @@
 <body>
 <%= flash[:success]%>
-<% if @dj == current_user %>
+<% if @dj == dj_current_user %>
   <h1>Welcome <%= @dj.name %></h1>
 
   <h2>Your Upcomming Gigs:</h2>
