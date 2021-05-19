@@ -20,6 +20,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/logout" do
+    flash[:message]
     session.clear
     redirect "/"
   end

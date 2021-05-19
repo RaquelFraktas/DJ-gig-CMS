@@ -2,12 +2,12 @@ class GigsController < ApplicationController
 
   # GET: /gigs
   get "/gigs" do
-    erb :"/gigs/index.html"
+    erb :"/gigs/index"
   end
 
   # GET: /gigs/new
   get "/gigs/new" do
-    erb :"/gigs/new.html"
+    erb :"/gigs/new"
   end
 
   # POST: /gigs
@@ -17,12 +17,12 @@ class GigsController < ApplicationController
 
   # GET: /gigs/5
   get "/gigs/:id" do
-    erb :"/gigs/show.html"
+    erb :"/gigs/show"
   end
 
   # GET: /gigs/5/edit
   get "/gigs/:id/edit" do
-    erb :"/gigs/edit.html"
+    erb :"/gigs/edit"
   end
 
   # PATCH: /gigs/5

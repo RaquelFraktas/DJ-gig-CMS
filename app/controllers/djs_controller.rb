@@ -17,10 +17,10 @@ class DjsController < ApplicationController
       dj = Dj.find_by(username: params[:dj][:username])
       if dj && dj.authenticate(params[:dj][:password])
         session[:user_id] = dj.id
-        session[:message] = "Successfully logged in."
-        flash[:success] = session[:message] 
+        flash[:message] = "Successfully logged in."
         redirect "/djs/#{dj.id}"
       end
+      flash[:message]= "Invalid credentials"
       redirect "/error"
     end
 
@@ -34,11 +34,17 @@ class DjsController < ApplicationController
 
     post "/djs/signup" do
       @dj = Dj.create(params[:dj])
-      if @dj
+      @dj.name = @dj.name.capitalize
+      @dj.based_in = @dj.based_in.capitalize
+      if !@dj.valid?
+        flash[:message] = "The credentials are invalid. Please create a unique username, and a password longer than 6 characters."
+        redirect to "/error"
+      else
         session[:user_id] = @dj.id
         @dj.genre_ids = params[:genres]
         if !params[:genre][:name].empty? && !Genre.find_by(name: params[:genre][:name])
           @new_genre = Genre.create(name: params[:genre][:name])
+          @new_genre.name = @new_genre.name.capitalize
           @dj.genres << @new_genre
         end
         @dj.save
@@ -61,6 +67,7 @@ class DjsController < ApplicationController
       @dj.genre_ids = params[:genres]
       if !params[:genre][:name].empty? && !Genre.find_by(name: params[:genre][:name])
         @new_genre = Genre.create(name: params[:genre][:name])
+        @new_genre.name = @new_genre.name.capitalize
         @dj.genres << @new_genre
       end
       @dj.save
