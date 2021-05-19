@@ -17,12 +17,9 @@
    
 
 
-
-
-
         
     <div class="genre_form">
-    <label for="genres"> The genres you play:</label>
+    <label for="genres"> <h3>The genres you play:</h3></label>
       <% Genre.all.each do |genre| %>
         <ul> <input id="<%= genre.name %>" type="checkbox" name="genres[]" value="<%= genre.id %>"<%='checked' if @dj.genres.include?(genre) %>>
           <li><%= genre.name %></li><br>

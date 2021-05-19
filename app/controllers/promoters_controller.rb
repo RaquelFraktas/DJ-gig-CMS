@@ -30,6 +30,7 @@ class PromotersController < ApplicationController
   get "/promoters/:id" do
     redirect_if_not_logged_in
     @promoter = Promoter.find(session[:user_id])
+    binding.pry
     erb :"/promoters/show"
   end
 
