@@ -9,7 +9,7 @@
       <ol>
        
          <li>
-           <%= gig.name %> <br>
+           <a href="/gigs/<%=gig.id%>"><%= gig.name %></a> <br>
            <%= gig.venue %><br>
            <%= gig.city %><br>
  
@@ -30,4 +30,3 @@
     <% end %>
 </body>
 <br><br>
-<a href="/logout">Log Out</a>

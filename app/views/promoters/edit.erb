@@ -17,18 +17,7 @@
 
         
     <div class="gig_form">
-    <label for="gigs"> <h3>Your upcoming gigs:</h3></label>
-      <% @promoter.gigs.each do |gig| %>
-        <ul> 
-          <input id="<%= gig.name %>" type="checkbox" name="gigs[]" value="<%= gig.id %>"<%='checked' if @promoter.gigs.include?(gig) %>>
-          <li><b><%= gig.name %></b></li>
-          <li>Venue: <%= gig.venue %></li>
-          <li>City: <%= gig.city %></li>
-        </ul>
-      <% end %> 
-      <% if @promoter.gigs.empty? %>
-        You currently have no gigs booked.
-      <% end %>
+    
   
     <br> <label for="create_new_gig"> <h3>Create a new gig:</h3></label><br>
     <label>Name:</label>
@@ -45,7 +34,7 @@
     </form> <br>
 
 
-    <form action="/promoters/<%= @promoter.id%>" method="post">
+    <form action="/promoters/<%= @promoter.id%>/delete" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete Account">
     </form>

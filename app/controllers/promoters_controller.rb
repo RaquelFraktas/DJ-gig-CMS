@@ -58,16 +58,16 @@ class PromotersController < ApplicationController
     @promoter.name = params[:promoter][:name]
     @promoter.based_in = params[:promoter][:based_in]
     @promoter.bio = params[:promoter][:bio]
-    @promoter.gig_ids = params[:gigs]
     if !params[:gig][:name].empty? && !Gig.find_by(name: params[:gig][:name])
       @new_gig = Gig.create(params[:gig])
+      @new_gig.name = @new_gig.name.capitalize
       @promoter.gigs << @new_gig
     end
     @promoter.save
     redirect "/promoters/#{@promoter.id}"
   end
 
-  delete "/promoters/:id" do
+  delete "/promoters/:id/delete" do
     session.clear
     @promoter = Promoter.find(params[:id])
     @promoter.delete

@@ -3,9 +3,10 @@
 <% Gig.all.each do |gig| %>
     <ul>
       <li> 
-        
-        <h3><%= gig.name %></h3>
-        <%= gig.promoter %> <br>
+       <a href="/gigs/<%=gig.id%>"> <h3><%= gig.name %></h3></a>
+          <% if gig.promoter %>
+          <%= gig.promoter.name %>
+          <%end%><br>
         <%= gig.venue %> <br>
         <%= gig.city %> <br>
         <% if promoter_current_user == gig.promoter %>

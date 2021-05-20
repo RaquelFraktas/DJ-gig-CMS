@@ -2,12 +2,14 @@
 <%= flash[:message]%>
 
   <h1>Details for <%= @gig.name%></h1>
-
+  <h4>Promoter:</h4> <%= @gig.promoter.name%>
   <h4>Venue:</h4> <%= @gig.venue%>
-  <h4>City: <%= @gig.city%></h4>
+  <h4>City:</h4> <%= @gig.city%></h4>
 
+  <br>  <br>
+  Click <a href="/gigs">here</a> to go back to the gigs page. <br>
   
-</body>
-Click <a href="/gigs">here</a> to go back to the gigs page.
-<br><br>
-<a href="/logout">Log Out</a>
+  <% if promoter_current_user == @gig.promoter %>
+    Click <a href="/gigs/<%=@gig.id%>/edit">here</a>to go edit this gig.<br>
+  <% end %>
+  </body>

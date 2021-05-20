@@ -9,18 +9,17 @@
     <label for="name"> Name:</label>
       <input type="text" id="gig_name" name="gig[name]" value="<%= @gig.name %>"><br><br>
 
-    <label for="promoter_based_in"> Venue:</label>
+    <label for="gig_venue"> Venue:</label>
       <input type="text" id="gig_venue" name="gig[venue]" value="<%= @gig.venue%>"><br><br>
       
-    <label for="promoter_based_in"> City:</label>
+    <label for="gig_city"> City:</label>
       <input type="text" id="gig_city" name="gig[city]" value="<%= @gig.city%>"><br><br>
-      
    
       <input type="submit" value="Save">
     </form> <br>
 
 
-    <form action="/gigs/<%= @gig.id%>" method="post">
+    <form action="/gigs/<%= @gig.id%>/delete" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete Gig">
     </form>

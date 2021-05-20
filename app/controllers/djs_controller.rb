@@ -76,7 +76,7 @@ class DjsController < ApplicationController
       redirect "/djs/#{@dj.id}"
     end
   
-    delete "/djs/:id" do
+    delete "/djs/:id/delete" do
       session.clear
       @dj = Dj.find(params[:id])
       @dj.delete
