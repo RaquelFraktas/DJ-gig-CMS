@@ -2,9 +2,11 @@ class PromotersController < ApplicationController
 
 
   get "/promoters" do
-    if logged_in?
-      promoter = Promoter.find(session[:user_id])
+    if promoter_logged_in?
+      promoter = Promoter.find(session[:promoter_user_id])
       redirect to"/promoters/#{promoter.id}"
+    else
+      session.clear
     end
     erb :"/promoters/index"
   end
@@ -16,7 +18,7 @@ class PromotersController < ApplicationController
   post "/promoters" do
     promoter = Promoter.find_by(username: params[:promoter][:username])
     if promoter && promoter.authenticate(params[:promoter][:password])
-      session[:user_id] = promoter.id
+      session[:promoter_user_id] = promoter.id
       flash[:message] = "Successfully logged in."
       redirect "/promoters/#{promoter.id}"
     end
@@ -25,8 +27,8 @@ class PromotersController < ApplicationController
   end
 
   get "/promoters/:id" do
-    redirect_if_not_logged_in
-    @promoter = Promoter.find(session[:user_id])
+    promoter_redirect_if_not_logged_in
+    @promoter = Promoter.find(session[:promoter_user_id])
     erb :"/promoters/show"
   end
 
@@ -38,7 +40,7 @@ class PromotersController < ApplicationController
       flash[:message] = "The credentials are invalid. Please create a unique username, and a password longer than 6 characters."
       redirect to "/error"
     else 
-      session[:user_id] = @promoter.id
+      session[:promoter_user_id] = @promoter.id
       @promoter.save
       redirect "/promoters/#{@promoter.id}"
     end
@@ -46,7 +48,7 @@ class PromotersController < ApplicationController
   end
 
   get "/promoters/:id/edit" do
-    redirect_if_not_logged_in
+    promoter_redirect_if_not_logged_in
       @promoter = Promoter.find(params[:id])
       erb :"/promoters/edit"
   end

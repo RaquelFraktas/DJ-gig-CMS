@@ -1,1 +1,13 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<body>
+<%= flash[:message]%>
+
+  <h1>Details for <%= @gig.name%></h1>
+
+  <h4>Venue:</h4> <%= @gig.venue%>
+  <h4>City: <%= @gig.city%></h4>
+
+  
+</body>
+Click <a href="/gigs">here</a> to go back to the gigs page.
+<br><br>
+<a href="/logout">Log Out</a>

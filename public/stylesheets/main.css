@@ -81,6 +81,12 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+
+  textarea#dj_bio.form-control{
+    font-family: Sans-Serif;
+    line-height: 18px;
+
+  }
 }
 
 @media screen and (max-width: 600px) {

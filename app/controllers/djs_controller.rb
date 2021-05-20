@@ -2,9 +2,11 @@ class DjsController < ApplicationController
   
 
     get "/djs" do
-      if logged_in?
-        dj = Dj.find(session[:user_id])
+      if dj_logged_in?
+        dj = Dj.find(session[:dj_user_id])
         redirect to"/djs/#{dj.id}"
+      else
+        session.clear
       end
       erb :"/djs/index"
     end
@@ -16,7 +18,7 @@ class DjsController < ApplicationController
     post "/djs" do
       dj = Dj.find_by(username: params[:dj][:username])
       if dj && dj.authenticate(params[:dj][:password])
-        session[:user_id] = dj.id
+        session[:dj_user_id] = dj.id
         flash[:message] = "Successfully logged in."
         redirect "/djs/#{dj.id}"
       end
@@ -26,8 +28,8 @@ class DjsController < ApplicationController
 
 
     get "/djs/:id" do
-      redirect_if_not_logged_in
-      @dj = Dj.find(session[:user_id])
+      dj_redirect_if_not_logged_in
+      @dj = Dj.find(session[:dj_user_id])
       erb :"/djs/show"
     end
 
@@ -40,7 +42,7 @@ class DjsController < ApplicationController
         flash[:message] = "The credentials are invalid. Please create a unique username, and a password longer than 6 characters."
         redirect to "/error"
       else
-        session[:user_id] = @dj.id
+        session[:dj_user_id] = @dj.id
         @dj.genre_ids = params[:genres]
         if !params[:genre][:name].empty? && !Genre.find_by(name: params[:genre][:name])
           @new_genre = Genre.create(name: params[:genre][:name])
@@ -54,7 +56,7 @@ class DjsController < ApplicationController
     end
   
     get "/djs/:id/edit" do
-      redirect_if_not_logged_in
+      dj_redirect_if_not_logged_in
       @dj = Dj.find(params[:id])
       erb :"/djs/edit"
     end

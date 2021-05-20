@@ -8,8 +8,8 @@
         <%= gig.promoter %> <br>
         <%= gig.venue %> <br>
         <%= gig.city %> <br>
-        <% if promoter_current_user %>
-        <a href="/gigs/<%gig.id%>/edit"> Click here to edit the event</a><br>
+        <% if promoter_current_user == gig.promoter %>
+        <a href="/gigs/<%=gig.id%>/edit"> Click here to edit the event</a><br>
         <% end %>
       </li>
     </ul> 

@@ -28,23 +28,34 @@ class ApplicationController < Sinatra::Base
 
   helpers do
 
-    def logged_in?
-      !!session[:user_id]
+    def dj_logged_in?
+      !!session[:dj_user_id]
+    end
+
+    def promoter_logged_in?
+      !!session[:promoter_user_id]
     end
 
     def dj_current_user
-      logged_in? && Dj.find(session[:user_id])
+      dj_logged_in? && Dj.find(session[:dj_user_id])
     end
   
     def promoter_current_user
-      logged_in? && Promoter.find(session[:user_id])
+      promoter_logged_in? && Promoter.find(session[:promoter_user_id])
     end
 
-    def redirect_if_not_logged_in
-      if !logged_in?
+    def dj_redirect_if_not_logged_in
+      if !dj_logged_in?
           redirect '/error'
       end
     end
+    
+    def promoter_redirect_if_not_logged_in
+      if !promoter_logged_in?
+          redirect '/error'
+      end
+    end
+
   end
 
 end
