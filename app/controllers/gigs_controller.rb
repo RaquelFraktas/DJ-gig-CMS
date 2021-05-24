@@ -15,9 +15,7 @@ class GigsController < ApplicationController
     @gig.venue = @gig.venue.capitalize
     @gig.city = @gig.city.capitalize
     @gig.promoter = promoter_current_user
-    binding.pry
     @gig.save
-
     redirect "/gigs"
   end
 
@@ -43,6 +41,12 @@ class GigsController < ApplicationController
       @gig.name = params[:gig][:name]
       @gig.venue = params[:gig][:venue]
       @gig.city = params[:gig][:city]
+      @gig.dj_ids = params[:djs]
+      if !@gig.dj_ids.empty?
+        @gig.dj_ids do |dj|
+          dj.gigs<< @gig
+        end
+      end
     end
     @gig.save
     redirect "/gigs/#{@gig.id}"

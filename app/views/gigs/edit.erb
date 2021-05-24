@@ -14,18 +14,24 @@
       
     <label for="gig_city"> City:</label>
       <input type="text" id="gig_city" name="gig[city]" value="<%= @gig.city%>"><br><br>
-   
+
+    <div id="gig_dj_form">
+    <label for="gig_city"> Djs:</label>
+      <% Dj.all.each do |dj| %>
+        <ul> <input type="checkbox" id="gig_djs" name="djs[]" value="<%= dj.id%>"<%='checked' if @gig.djs.include?(dj) %>>
+          <li> <%=dj.name%> </li><br>
+        </ul> <% end %> <br>
+      
+      </div>
       <input type="submit" value="Save">
-    </form> <br>
+    </form> <br><br>
 
-
+    <div class= "delete_form">
     <form action="/gigs/<%= @gig.id%>/delete" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete Gig">
     </form>
-
+    </div>
   </div>
-
-  
 </div>
 

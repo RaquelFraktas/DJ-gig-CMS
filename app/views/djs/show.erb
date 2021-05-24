@@ -8,17 +8,17 @@
     <% @dj.gigs.collect do |gig| %>
       <ol>
         <li>
-        <%= gig.name %> <br>
-        <%= gig.venue %><br>
-        <%= gig.city %><br>
-        <%= gig.promoter %>
-        <br><br>
+        <h4>Event: <a href="/gigs/<%=gig.id%>"><%= gig.name %></a> </h4>
+        Venue: <%= gig.venue %><br>
+        City: <%= gig.city %><br>
+        Promoter: <%= gig.promoter.name %>
+        <br>
         </li>
       </ol>
     <% end %>
     <% else %>
     You currently have no shows booked. 
-  <%end%>
+  <%end%><br>
 
     <h3>Your Info</h3>
     <h4> Based in: </h4><%= @dj.based_in %><br>

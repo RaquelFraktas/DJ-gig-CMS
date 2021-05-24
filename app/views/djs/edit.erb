@@ -29,17 +29,15 @@
     <input type="text" id="new_genre" name="genre[name]"><br><br>
        
       <br><br>
-
-   
       <input type="submit" value="Save">
     </form> <br><br>
 
-
+    <div class="delete_form">
     <form action="/djs/<%= @dj.id%>/delete" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete Account">
     </form>
-
+        </div>
      </div>
    </div>
   

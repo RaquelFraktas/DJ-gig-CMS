@@ -91,11 +91,27 @@
   .navbar {  
     border: 1px solid #e7e7e7;
     background-color: #f3f3f3;
+    text-align: center;
   }
 
-  li{
+  div.navbar li {
+    display: inline;
+    padding: 8px;
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  #logout {
+    text-align:right;
+    float: right;
+  }
+
+  .genre_form ul li{
     display: inline;
   }
+
 }
 
 @media screen and (max-width: 600px) {
