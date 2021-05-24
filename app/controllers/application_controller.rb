@@ -25,6 +25,11 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
+  get "/contact" do
+  
+    erb :contact
+  end
+
 
   helpers do
 

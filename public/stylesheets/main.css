@@ -88,19 +88,30 @@
 
   }
 
+  textarea#promoter_bio.form-control{
+    font-family: Sans-Serif;
+    line-height: 18px;
+
+  }
+
   .navbar {  
     border: 1px solid #e7e7e7;
     background-color: #f3f3f3;
-    text-align: center;
   }
 
-  div.navbar li {
-    display: inline;
+  .navbar li {
+    display: block;
     padding: 8px;
-    float: left;
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+
+  .navbar li a:hover {
+    background-color: rgb(249, 226, 226);
   }
 
   #logout {
@@ -110,6 +121,19 @@
 
   .genre_form ul li{
     display: inline;
+  }
+
+  input[type=text] {
+    width: 100%;
+  }
+
+  input[type=text]:focus {
+    background-color: rgb(249, 226, 226);
+  }
+
+  div.delete_form input[type=submit]{
+    display: flex;
+    justify-content: flex-end;
   }
 
 }
