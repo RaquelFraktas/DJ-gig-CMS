@@ -14,9 +14,8 @@ genres_list.each do |name|
   g.save
 end
 
-@spicy = Dj.create(name:"DJ Spicy Cement", username:"1spicyboi", password:"helloworld",bio: "I'll set your party on fire with my really niche finds.", based_in:"Brooklyn")
-
-@reconstruct = Gig.create(name:"reconstruct", venue:"umbrella factory", city: "brooklyn")
-@CNC = Promoter.create(name: "luke", based_in: "brooklyn", username: "CNC", password: "cnc")
-
+@spicy = Dj.create(name:"DJ Spicy Cement", username:"1spicyboi", password:"helloworld",bio: "I'll break the floor with my really niche finds.", based_in:"Brooklyn")
+@kellya = Dj.create(name:"Kellya", username:"kellyadj", password:"helloworld",bio: "Full of surprises. For the oldheads", based_in:"Brooklyn")
+@CNC = Promoter.create(name: "Reconstruct", based_in: "Brooklyn", username: "Recon", password: "helloworld")
+@sheepshead = Promoter.create(name: "NewtypeRhythms", based_in: "Brooklyn", username: "newtyperhythms", password: "helloworld")
 puts "successfully seeded"

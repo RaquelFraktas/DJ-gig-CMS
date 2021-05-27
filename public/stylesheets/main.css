@@ -13,7 +13,7 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: whitesmoke;
+    background-color: dimgray;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -51,9 +51,14 @@
     margin-bottom: 18px;
   }
 
+  ul {
+    display: inline;
+  }
+
   .main {
     overflow: hidden;
   }
+  
 
   .content {
     float: left;
@@ -61,7 +66,7 @@
   }
 
   .sidebar {
-    background: #eee;
+    background: lightgray;
     border: 1px solid #ccc;
     float: right;
     padding: 2.08333333333%; /* 5px / 240px */
@@ -82,25 +87,23 @@
     padding-top: 20px;
   }
 
-  textarea#dj_bio.form-control{
+  textarea, .form-control{
     font-family: Sans-Serif;
     line-height: 18px;
-
+    width: 100%;
   }
 
-  textarea#promoter_bio.form-control{
-    font-family: Sans-Serif;
-    line-height: 18px;
-
+  .form-control:focus {
+    background-color: rgb(249, 226, 226);
   }
 
   .navbar {  
     border: 1px solid #e7e7e7;
-    background-color: #f3f3f3;
+    background-color: lightgray;
   }
 
   .navbar li {
-    display: block;
+    display: inline-block;
     padding: 8px;
     padding: 14px 16px;
     text-decoration: none;
@@ -131,9 +134,25 @@
     background-color: rgb(249, 226, 226);
   }
 
-  div.delete_form input[type=submit]{
+  input[type=password] {
+    width: 100%;
+  }
+
+  input[type=password]:focus {
+    background-color: rgb(249, 226, 226);
+  }
+
+  div.delete_form {
     display: flex;
     justify-content: flex-end;
+  }
+
+  div.delete_form a:hover{
+    background-color: rgb(249, 226, 226);
+  }
+
+  #gig_dj_form {
+    display: inline;
   }
 
 }
@@ -168,9 +187,18 @@
     line-height: 24px;
   }
 
-  textarea#dj_bio.form-control{
+  textarea, .form-control{
     font-family: Sans-Serif;
     line-height: 18px;
-
+    width: 100%;
   }
+
+  .form-control:focus {
+    background-color: rgb(249, 226, 226);
+  }
+
+  div.delete_form a:hover{
+    background-color: rgb(249, 226, 226);
+  }
+
 }

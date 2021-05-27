@@ -6,17 +6,17 @@
     <form action="/gigs/<%= @gig.id%>" method="POST"> 
     <input type="hidden" name="_method" value="PATCH">
 
-    <label for="name"> Name:</label>
+    <label for="name"><h4>Name:</h4></label>
       <input type="text" id="gig_name" name="gig[name]" value="<%= @gig.name %>"><br><br>
 
-    <label for="gig_venue"> Venue:</label>
+    <label for="gig_venue"> <h4>Venue:</h4></label>
       <input type="text" id="gig_venue" name="gig[venue]" value="<%= @gig.venue%>"><br><br>
       
-    <label for="gig_city"> City:</label>
+    <label for="gig_city"> <h4>City:</h4></label>
       <input type="text" id="gig_city" name="gig[city]" value="<%= @gig.city%>"><br><br>
 
     <div id="gig_dj_form">
-    <label for="gig_city"> Djs:</label>
+    <label for="gig_city"> <h4>Djs:</h4></label>
       <% Dj.all.each do |dj| %>
         <ul> <input type="checkbox" id="gig_djs" name="djs[]" value="<%= dj.id%>"<%='checked' if @gig.djs.include?(dj) %>>
           <li> <%=dj.name%> </li><br>
