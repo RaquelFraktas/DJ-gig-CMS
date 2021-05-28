@@ -7,8 +7,8 @@
         <% if gig.promoter %>
         <%= gig.promoter.name %>
         <%end%><br>
-      <%= gig.venue %> <br>
-      <%= gig.city %> <br>
+      <%= gig.venue %><br>
+      <%= gig.city %><br>
       <% if promoter_current_user == gig.promoter %>
       <a href="/gigs/<%=gig.id%>/edit"> Click here to edit the event</a><br>
       <% end %>
@@ -17,7 +17,6 @@
 <% end %>
 <br>
 </div>
-
 <% if promoter_current_user %>
 <h4><a href="/gigs/new">Click here</a> to create a new event</a></h4>
-<% end %>
+<%end%>
