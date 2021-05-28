@@ -151,7 +151,7 @@
     background-color: rgb(249, 226, 226);
   }
 
-  #gig_dj_form {
+  div#gig_dj_form li{
     display: inline;
   }
 

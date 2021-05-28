@@ -1,37 +1,33 @@
 <h2>Edit your gig</h2>
-
 <div class="content">
-
   <div class="form">
     <form action="/gigs/<%= @gig.id%>" method="POST"> 
     <input type="hidden" name="_method" value="PATCH">
-
     <label for="name"><h4>Name:</h4></label>
       <input type="text" id="gig_name" name="gig[name]" value="<%= @gig.name %>"><br><br>
-
     <label for="gig_venue"> <h4>Venue:</h4></label>
       <input type="text" id="gig_venue" name="gig[venue]" value="<%= @gig.venue%>"><br><br>
-      
     <label for="gig_city"> <h4>City:</h4></label>
       <input type="text" id="gig_city" name="gig[city]" value="<%= @gig.city%>"><br><br>
-
     <div id="gig_dj_form">
-    <label for="gig_city"> <h4>Djs:</h4></label>
+      <label for="gig_city"> <h4>Djs:</h4></label>
       <% Dj.all.each do |dj| %>
-        <ul> <input type="checkbox" id="gig_djs" name="djs[]" value="<%= dj.id%>"<%='checked' if @gig.djs.include?(dj) %>>
-          <li> <%=dj.name%> </li><br>
-        </ul> <% end %> <br>
-      
-      </div>
-      <input type="submit" value="Save">
-    </form> <br><br>
-
-    <div class= "delete_form">
-    <form action="/gigs/<%= @gig.id%>/delete" method="post">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete Gig">
-    </form>
+        <ul> 
+        <input type="checkbox" id="gig_djs" name="djs[]" value="<%= dj.id%>"<%='checked' if @gig.djs.include?(dj) %>>
+          <li> <%=dj.name%></li><br>
+        </ul> 
+      <% end %> 
+      <br>
     </div>
+  </div>
+  <input type="submit" value="Save">
+  </form> 
+  <br><br>
+  <div class= "delete_form">
+  <form action="/gigs/<%= @gig.id%>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Gig">
+  </form>
   </div>
 </div>
 

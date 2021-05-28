@@ -1,9 +1,7 @@
-<body>
 <%= flash[:message]%>
 <% if @dj == dj_current_user %>
   <h1>Welcome <%= @dj.name %></h1>
-
-  <h2>Your Upcomming Gigs:</h2>
+  <h2>Your Upcoming Gigs:</h2>
   <% if !@dj.gigs.empty? %>
     <% @dj.gigs.collect do |gig| %>
       <ol>
@@ -16,23 +14,19 @@
         </li>
       </ol>
     <% end %>
-    <% else %>
+  <% else %>
     You currently have no shows booked. 
   <%end%><br>
-
-    <h3>Your Info</h3>
-    <h4> Based in: </h4><%= @dj.based_in %><br>
-    <h4> Bio: </h4><%= @dj.bio %><br>
-    <h4> The genres you play: </h4>
-    <% @dj.genres.collect do |genre| %>
-      <ul>
-        <ol><%= genre.name %><ol>
-      </ul>
-    <% end %>
-  
+  <h3>Your Info</h3>
+  <h4> Based in: </h4><%= @dj.based_in %><br>
+  <h4> Bio: </h4><%= @dj.bio %><br>
+  <h4> The genres you play: </h4>
+  <% @dj.genres.collect do |genre| %>
+    <ul>
+      <ol><%= genre.name %><ol>
+    </ul>
+  <% end %>
 <% end %>
-      <br>
-    <a href="/djs/<%=@dj.id%>/edit">Click here to edit your details</a>
-
-</body>
+<br>
+  <a href="/djs/<%=@dj.id%>/edit">Click here to edit your details</a>
 <br><br>

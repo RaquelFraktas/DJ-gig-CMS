@@ -1,19 +1,19 @@
-<h1>All upcomming gigs:</h1>
+<h1>All upcoming gigs:</h1>
 <div id="view_all_gigs">
 <% Gig.all.each do |gig| %>
-    <ul>
-      <li> 
-       <a href="/gigs/<%=gig.id%>"> <h3><%= gig.name %></h3></a>
-          <% if gig.promoter %>
-          <%= gig.promoter.name %>
-          <%end%><br>
-        <%= gig.venue %> <br>
-        <%= gig.city %> <br>
-        <% if promoter_current_user == gig.promoter %>
-        <a href="/gigs/<%=gig.id%>/edit"> Click here to edit the event</a><br>
-        <% end %>
-      </li>
-    </ul> 
+  <ul>
+    <li> 
+     <a href="/gigs/<%=gig.id%>"> <h3><%= gig.name %></h3></a>
+        <% if gig.promoter %>
+        <%= gig.promoter.name %>
+        <%end%><br>
+      <%= gig.venue %> <br>
+      <%= gig.city %> <br>
+      <% if promoter_current_user == gig.promoter %>
+      <a href="/gigs/<%=gig.id%>/edit"> Click here to edit the event</a><br>
+      <% end %>
+    </li>
+  </ul> 
 <% end %>
 <br>
 </div>
